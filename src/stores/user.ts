@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { d1Api } from '@/api/d1'
+import { apiClient } from '@/api/client'
 
 export const useUserStore = defineStore('user', () => {
   const token = ref<string | null>(localStorage.getItem('token'))
@@ -14,7 +14,7 @@ export const useUserStore = defineStore('user', () => {
   const isLoggedIn = computed(() => !!token.value)
 
   async function login(phone: string, code: string) {
-    const res = await d1Api.login(phone, code)
+    const res = await apiClient.login(phone, code)
     token.value = res.token
     userInfo.value = res.user
     localStorage.setItem('token', res.token)
@@ -22,11 +22,11 @@ export const useUserStore = defineStore('user', () => {
   }
 
   async function sendCode(phone: string) {
-    return await d1Api.sendCode(phone)
+    return await apiClient.sendCode(phone)
   }
 
   async function register(phone: string, code: string) {
-    const res = await d1Api.register(phone, code)
+    const res = await apiClient.register(phone, code)
     token.value = res.token
     userInfo.value = res.user
     localStorage.setItem('token', res.token)
@@ -41,7 +41,7 @@ export const useUserStore = defineStore('user', () => {
 
   async function fetchUserInfo() {
     if (!token.value) return
-    const res = await d1Api.getUserInfo(token.value)
+    const res = await apiClient.getUserInfo()
     userInfo.value = res
   }
 

@@ -5,24 +5,29 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:worker": "wrangler dev backend/index.ts --port 8787",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0",
+    "axios": "^1.6.8",
+    "dayjs": "^1.11.10",
+    "echarts": "^5.5.0",
+    "hono": "^4.12.18",
+    "jose": "^5.10.0",
     "pinia": "^2.1.7",
     "vant": "^4.9.0",
-    "echarts": "^5.5.0",
-    "axios": "^1.6.8",
-    "dayjs": "^1.11.10"
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@types/node": "^20.12.7",
     "@vitejs/plugin-vue": "^5.0.4",
-    "vite": "^5.2.8",
     "typescript": "^5.4.5",
-    "vue-tsc": "^2.0.11",
     "unplugin-vue-components": "^0.26.0",
-    "@types/node": "^20.12.7"
+    "vite": "^5.2.8",
+    "vue-tsc": "^2.0.11",
+    "wrangler": "^3.114.17"
   }
 }

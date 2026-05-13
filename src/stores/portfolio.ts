@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { d1Api } from '@/api/d1'
+import { apiClient } from '@/api/client'
 import type { Holding, DividendRecord } from '@/types'
 
 export const usePortfolioStore = defineStore('portfolio', () => {
@@ -48,20 +48,20 @@ export const usePortfolioStore = defineStore('portfolio', () => {
   async function fetchHoldings() {
     loading.value = true
     try {
-      holdings.value = await d1Api.getHoldings()
+      holdings.value = await apiClient.getHoldings()
     } finally {
       loading.value = false
     }
   }
 
   async function addHolding(data: Omit<Holding, 'id'>) {
-    const newHolding = await d1Api.addHolding(data)
+    const newHolding = await apiClient.addHolding(data)
     holdings.value.push(newHolding)
     return newHolding
   }
 
   async function updateHolding(id: string, data: Partial<Holding>) {
-    const updated = await d1Api.updateHolding(id, data)
+    const updated = await apiClient.updateHolding(id, data)
     const idx = holdings.value.findIndex(h => h.id === id)
     if (idx !== -1) {
       holdings.value[idx] = { ...holdings.value[idx], ...updated }
@@ -70,21 +70,21 @@ export const usePortfolioStore = defineStore('portfolio', () => {
   }
 
   async function deleteHolding(id: string) {
-    await d1Api.deleteHolding(id)
+    await apiClient.deleteHolding(id)
     holdings.value = holdings.value.filter(h => h.id !== id)
   }
 
   async function fetchDividendRecords() {
     loading.value = true
     try {
-      dividendRecords.value = await d1Api.getDividendRecords()
+      dividendRecords.value = await apiClient.getDividendRecords()
     } finally {
       loading.value = false
     }
   }
 
   async function confirmDividend(id: string) {
-    const updated = await d1Api.confirmDividend(id)
+    const updated = await apiClient.confirmDividend(id)
     const idx = dividendRecords.value.findIndex(r => r.id === id)
     if (idx !== -1) {
       dividendRecords.value[idx] = updated
@@ -94,7 +94,7 @@ export const usePortfolioStore = defineStore('portfolio', () => {
 
   async function refreshPrices() {
     // 模拟价格更新
-    const updated = await d1Api.refreshPrices()
+    const updated = await apiClient.refreshPrices()
     holdings.value = updated
     return updated
   }
