@@ -1,7 +1,6 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
-import { BearerAuth } from 'hono/bearer-auth'
-import { SignJWT, jwtVerify } from 'hono/jwt'
+import { SignJWT, jwtVerify } from 'jose'
 
 type Env = {
   DB: D1Database

@@ -23,13 +23,13 @@
     <div class="stats-grid">
       <div class="stat-card">
         <div class="stat-label">已确认到账</div>
-        <div class="stat-value success-text">
+        <div class="stat-value warning-text">
           ¥ {{ formatAmount(portfolioStore.confirmedDividend) }}
         </div>
       </div>
       <div class="stat-card">
         <div class="stat-label">待到账</div>
-        <div class="stat-value warning-text">
+        <div class="stat-value success-text">
           ¥ {{ formatAmount(portfolioStore.pendingDividend) }}
         </div>
       </div>
