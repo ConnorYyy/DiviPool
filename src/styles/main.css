@@ -1,0 +1,106 @@
+:root {
+  /* Black & Gold Theme */
+  --bg-primary: #0D0D0D;
+  --bg-secondary: #1A1A1A;
+  --bg-card: #1E1E1E;
+  --gold-primary: #D4AF37;
+  --gold-light: #F4D03F;
+  --gold-dark: #B8860B;
+  --text-primary: #FFFFFF;
+  --text-secondary: #A0A0A0;
+  --text-muted: #666666;
+  --border-color: #2A2A2A;
+  --success: #52c41a;
+  --warning: #faad14;
+  --error: #ff4d4f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Vant Theme Override */
+.van-tabbar {
+  background-color: var(--bg-secondary) !important;
+  border-top: 1px solid var(--border-color);
+}
+
+.van-tabbar-item {
+  color: var(--text-secondary) !important;
+}
+
+.van-tabbar-item--active {
+  color: var(--gold-primary) !important;
+}
+
+.van-tabbar-item__text {
+  color: inherit !important;
+}
+
+/* Card Styles */
+.gold-card {
+  background: linear-gradient(135deg, var(--bg-card) 0%, #252525 100%);
+  border: 1px solid var(--gold-dark);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.gold-border {
+  border: 1px solid var(--gold-primary);
+}
+
+.gold-text {
+  color: var(--gold-primary);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold-primary), var(--gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Common utility classes */
+.page-container {
+  min-height: 100vh;
+  padding: 16px;
+  padding-bottom: 80px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.mt-8 { margin-top: 8px; }
+.mt-12 { margin-top: 12px; }
+.mt-16 { margin-top: 16px; }
+.mb-8 { margin-bottom: 8px; }
+.mb-12 { margin-bottom: 12px; }
+.mb-16 { margin-bottom: 16px; }
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dark);
+  border-radius: 2px;
+}
