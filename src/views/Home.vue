@@ -131,6 +131,7 @@ import { ref, computed, onMounted } from 'vue'
 import { showToast } from 'vant'
 import { useUserStore } from '@/stores/user'
 import { usePortfolioStore } from '@/stores/portfolio'
+import { apiClient } from '@/api/client'
 
 const userStore = useUserStore()
 const portfolioStore = usePortfolioStore()
@@ -191,8 +192,7 @@ onMounted(async () => {
     
     // Generate mock dividend records if empty
     if (portfolioStore.dividendRecords.length === 0 && portfolioStore.holdings.length > 0) {
-      const { d1Api } = await import('@/api/d1')
-      await d1Api.generateDividendRecords(portfolioStore.holdings)
+      await apiClient.generateDividendRecords(portfolioStore.holdings)
       await portfolioStore.fetchDividendRecords()
     }
   }

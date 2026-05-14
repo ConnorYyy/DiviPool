@@ -182,7 +182,7 @@
 import { ref, reactive, onMounted } from 'vue'
 import { showToast, showConfirmDialog } from 'vant'
 import { usePortfolioStore } from '@/stores/portfolio'
-import { d1Api } from '@/api/d1'
+import { apiClient } from '@/api/client'
 import type { Holding, StockInfo } from '@/types'
 
 const portfolioStore = usePortfolioStore()
@@ -235,7 +235,7 @@ async function handleSearch() {
     searchResults.value = []
     return
   }
-  searchResults.value = await d1Api.searchStocks(searchKeyword.value)
+  searchResults.value = await apiClient.searchStocks(searchKeyword.value)
 }
 
 function selectStock(stock: StockInfo) {
