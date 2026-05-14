@@ -34,54 +34,54 @@ async function request<T>(
 
 export const apiClient = {
   async sendCode(phone: string): Promise<{ success: boolean; message: string }> {
-    return request('/api/auth/send-code', 'POST', { phone })
+    return request('POST', '/api/auth/send-code', { phone })
   },
 
   async login(phone: string, code: string): Promise<{ token: string; user: User }> {
-    return request('/api/auth/login', 'POST', { phone, code })
+    return request('POST', '/api/auth/login', { phone, code })
   },
 
   async register(phone: string, code: string): Promise<{ token: string; user: User }> {
-    return request('/api/auth/register', 'POST', { phone, code })
+    return request('POST', '/api/auth/register', { phone, code })
   },
 
   async getUserInfo(): Promise<User> {
-    return request('/api/user/info', 'GET')
+    return request('GET', '/api/user/info')
   },
 
   async searchStocks(keyword: string): Promise<StockInfo[]> {
-    return request(`/api/stocks/search?keyword=${encodeURIComponent(keyword)}`, 'GET')
+    return request('GET', `/api/stocks/search?keyword=${encodeURIComponent(keyword)}`)
   },
 
   async getHoldings(): Promise<Holding[]> {
-    return request('/api/holdings', 'GET')
+    return request('GET', '/api/holdings')
   },
 
   async addHolding(data: Omit<Holding, 'id'>): Promise<Holding> {
-    return request('/api/holdings', 'POST', data)
+    return request('POST', '/api/holdings', data)
   },
 
   async updateHolding(id: string, data: Partial<Holding>): Promise<Holding> {
-    return request(`/api/holdings/${id}`, 'PUT', data)
+    return request('PUT', `/api/holdings/${id}`, data)
   },
 
   async deleteHolding(id: string): Promise<void> {
-    return request(`/api/holdings/${id}`, 'DELETE')
+    return request('DELETE', `/api/holdings/${id}`)
   },
 
   async getDividendRecords(): Promise<DividendRecord[]> {
-    return request('/api/dividends', 'GET')
+    return request('GET', '/api/dividends')
   },
 
   async confirmDividend(id: string): Promise<DividendRecord> {
-    return request(`/api/dividends/${id}/confirm`, 'POST')
+    return request('POST', `/api/dividends/${id}/confirm`)
   },
 
   async refreshPrices(): Promise<Holding[]> {
-    return request('/api/prices/refresh', 'POST')
+    return request('POST', '/api/prices/refresh')
   },
 
   async generateDividendRecords(holdings: Holding[]): Promise<void> {
-    return request('/api/dividends/generate', 'POST', { holdings })
+    return request('POST', '/api/dividends/generate', { holdings })
   }
 }
